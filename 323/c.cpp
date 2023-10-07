@@ -60,10 +60,8 @@ int main()
             cout << a << endl;
         }
         else{
-            
+
         }
     }
-
-    
     return 0;
 }
