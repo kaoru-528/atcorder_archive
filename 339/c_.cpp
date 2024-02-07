@@ -1,6 +1,6 @@
 /**
  * author:  Kaoru
- * created: 02.02.2024 22:10:20
+ * created: 02.02.2024 22:48:35
  **/
 
 #include <bits/stdc++.h>
@@ -43,25 +43,72 @@ template <typename T, typename S> inline void print(const vector<pair<T, S>>& v)
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-int main()
-{
-    string N;
-    cin >> N;
-    string ans;
 
-    rep(i, N.size()){
-        if(N[i] == '.'){
-            for(int j = i; j < N.size(); j++){
-                if(N[j] != '.'){
-                ans += N[j];
-                }
-                else{
-                    ans = "";
-                }
+int main() {
+    int H, W, N;
+    cin >> H >> W >> N;
+
+    vector<vector<char>> grid(H, vector<char>(W, '.'));
+    int i = 1, j = 1;
+    char dir = 'U';
+
+    rep(k, N) {
+        if (grid[i - 1][j - 1] == '.') {
+            grid[i - 1][j - 1] = '#';
+            switch (dir) {
+                case 'U':
+                    dir = 'R';
+                    break;
+                case 'R':
+                    dir = 'D';
+                    break;
+                case 'D':
+                    dir = 'L';
+                    break;
+                case 'L':
+                    dir = 'U';
+                    break;
+            }
+        } else {
+            grid[i - 1][j - 1] = '.';
+            switch (dir) {
+                case 'U':
+                    dir = 'L';
+                    break;
+                case 'R':
+                    dir = 'U';
+                    break;
+                case 'D':
+                    dir = 'R';
+                    break;
+                case 'L':
+                    dir = 'D';
+                    break;
             }
         }
+        switch (dir) {
+            case 'U':
+                i = (i - 2 + H) % H + 1;
+                break;
+            case 'R':
+                j = j % W + 1;
+                break;
+            case 'D':
+                i = i % H + 1;
+                break;
+            case 'L':
+                j = (j - 2 + W) % W + 1;
+                break;
+        }
     }
-    print(ans);
+
+
+    for (const auto &row : grid) {
+        for (char cell : row) {
+            cout << cell;
+        }
+        cout << endl;
+    }
 
     return 0;
 }
