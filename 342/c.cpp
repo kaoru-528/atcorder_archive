@@ -43,97 +43,132 @@ template <typename T, typename S> inline void print(const vector<pair<T, S>>& v)
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-std::string replaceOtherStr(std::string &replacedStr, std::string from, std::string to) {
-    const unsigned int pos = replacedStr.find(from);
-    const int len = from.length();
+// std::string replaceOtherStr(std::string &replacedStr, std::string from, std::string to) {
+//     const unsigned int pos = replacedStr.find(from);
+//     const int len = from.length();
 
-    if (pos == std::string::npos || from.empty()) {
-        return replacedStr;
-    }
+//     if (pos == std::string::npos || from.empty()) {
+//         return replacedStr;
+//     }
 
-    return replacedStr.replace(pos, len, to);
-}
+//     return replacedStr.replace(pos, len, to);
+// }
 
-int main()
-{
+// int main()
+// {
+//     int N;
+//     cin >> N;
+//     string S;
+//     cin >> S;
+//     int Q;
+//     cin >> Q;
+//     vector<vector<string>> A(Q, vector<string>(2));
+//     rep(i, Q){
+//         rep(j, 2){
+//             cin >> A[i][j];
+//         }
+//     }
+
+//     rep(i, Q){
+//         if(A[i][0] != A[i][1]){
+//             replaceOtherStr(S, A[i][0], A[i][1]);
+//             print(S);
+//         }
+//     }
+
+//     return 0;
+// }
+
+// int main() {
+//     ll N;
+//     cin >> N;
+//     string S;
+//     cin >> S;
+//     ll Q;
+//     cin >> Q;
+//     vector<pair<char, char>> A(Q);
+//     for (int i = 0; i < Q; ++i) {
+//         cin >> A[i].first >> A[i].second;
+//     }
+
+//     for (int i = 0; i < Q; ++i) {
+//         if (A[i].first != A[i].second) {
+//             int npos = S.find(A[i].first);
+//             if(npos != -1){
+//                 replace(all(S), A[i].first, A[i].second);
+//             }
+//         }
+//     }
+
+//     print(S);
+//     return 0;
+// }
+// using ll = long long;
+
+// int main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
+    
+//     ll N;
+//     cin >> N;
+    
+//     string S;
+//     cin >> S;
+    
+//     ll Q;
+//     cin >> Q;
+    
+//     vector<pair<char, char>> A(Q);
+    
+//     for (int i = 0; i < Q; ++i) {
+//         cin >> A[i].first >> A[i].second;
+//     }
+
+//     for (int i = 0; i < Q; ++i) {
+//         if (A[i].first != A[i].second) {
+//             for (auto &c : S) {
+//                 if (c == A[i].first) {
+//                     c = A[i].second;
+//                 }
+//             }
+//         }
+//     }
+
+//     print(S);
+//     return 0;
+// }
+
+int main(){
     int N;
     cin >> N;
     string S;
     cin >> S;
     int Q;
     cin >> Q;
-    vector<vector<string>> A(Q, vector<string>(2));
+    vector<vector<char>> A(Q, vector<char>(2));
     rep(i, Q){
         rep(j, 2){
             cin >> A[i][j];
         }
     }
 
+    string from, to;
+    from = to = "abcdefghijklmnopqrstuvwxyz";
+
     rep(i, Q){
-        if(A[i][0] != A[i][1]){
-            replaceOtherStr(S, A[i][0], A[i][1]);
-            print(S);
-        }
-    }
-
-    return 0;
-}
-
-int main() {
-    ll N;
-    cin >> N;
-    string S;
-    cin >> S;
-    ll Q;
-    cin >> Q;
-    vector<pair<char, char>> A(Q);
-    for (int i = 0; i < Q; ++i) {
-        cin >> A[i].first >> A[i].second;
-    }
-
-    for (int i = 0; i < Q; ++i) {
-        if (A[i].first != A[i].second) {
-            int npos = S.find(A[i].first);
-            if(npos != -1){
-                replace(all(S), A[i].first, A[i].second);
+        rep(j, 26){
+            if(A[i][0] == to[j]){
+                to[j] = A[i][1];
             }
         }
     }
-
-    print(S);
-    return 0;
-}
-using ll = long long;
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    
-    ll N;
-    cin >> N;
-    
-    string S;
-    cin >> S;
-    
-    ll Q;
-    cin >> Q;
-    
-    vector<pair<char, char>> A(Q);
-    
-    for (int i = 0; i < Q; ++i) {
-        cin >> A[i].first >> A[i].second;
-    }
-
-    for (int i = 0; i < Q; ++i) {
-        if (A[i].first != A[i].second) {
-            for (auto &c : S) {
-                if (c == A[i].first) {
-                    c = A[i].second;
-                }
-            }
+  rep(i, N){
+      rep(j, 26){
+          if(S[i] == from[j]){
+              S[i] = to[j];
+              break;
+          }
         }
     }
-
     print(S);
-    return 0;
 }
