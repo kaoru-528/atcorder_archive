@@ -56,7 +56,7 @@ int main()
                 ans += N[j];
                 }
                 else{
-                    ans = "";
+                    ans = 
                 }
             }
         }

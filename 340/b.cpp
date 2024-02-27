@@ -1,6 +1,6 @@
 /**
  * author:  Kaoru
- * created: 10.02.2024 20:54:30
+ * created: 10.02.2024 20:54:22
  **/
 
 #include <bits/stdc++.h>
@@ -43,18 +43,45 @@ template <typename T, typename S> inline void print(const vector<pair<T, S>>& v)
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-int main()
-{
-    int a ,b, d;
-    cin >> a >> b >> d;
-    int ans = a;
+// int main()
+// {
+//     int Q;
+//     cin >> Q;
+//     vector<vector<int>> query(Q, vector<int>(2));
+//     rep(i, Q){
+//         for(int j = 0; j < 2; j++){
+//             cin >> query[i][j];
+//         }
+//     }
+//     vi ans(Q);
+//     int j = 0;
+//     // print(query[0][1]);
+//     rep(i, Q){
+//         if (query[i][0] == 1){
+//             ans[j] = query[i][1];
+//             j++;
+//         }else if (query[i][0] == 2){
+//             // print(j);
+//             print(ans[j - query[i][1]]);
+//         }
+//     }
 
-    while ( ans != b){
-        cout << ans << " ";
-        ans += d;
+//     return 0;
+// }
+
+// 復習
+int main(void){
+    int Q;
+    cin >> Q;
+    vi ans;
+
+    rep(i, Q){
+        int t, x;
+        cin >> t >> x;
+        if (t == 1){
+            ans.pb(x);
+        }else{
+            print(ans[ans.size() - x]);
+        }
     }
-    cout << b << endl;
-
-
-    return 0;
 }

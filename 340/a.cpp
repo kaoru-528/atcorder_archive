@@ -1,6 +1,6 @@
 /**
  * author:  Kaoru
- * created: 10.02.2024 20:54:22
+ * created: 10.02.2024 20:54:30
  **/
 
 #include <bits/stdc++.h>
@@ -45,26 +45,16 @@ template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; }
 
 int main()
 {
-    int Q;
-    cin >> Q;
-    vector<vector<int>> query(Q, vector<int>(2));
-    rep(i, Q){
-        for(int j = 0; j < 2; j++){
-            cin >> query[i][j];
-        }
+    int a ,b, d;
+    cin >> a >> b >> d;
+    int ans = a;
+
+    while ( ans != b){
+        cout << ans << " ";
+        ans += d;
     }
-    vi ans(Q);
-    int j = 0;
-    // print(query[0][1]);
-    rep(i, Q){
-        if (query[i][0] == 1){
-            ans[j] = query[i][1];
-            j++;
-        }else if (query[i][0] == 2){
-            // print(j);
-            print(ans[j - query[i][1]]);
-        }
-    }
+    cout << b << endl;
+
 
     return 0;
 }
