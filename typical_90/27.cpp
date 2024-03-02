@@ -1,6 +1,6 @@
 /**
  * author:  Kaoru
- * created: 01.03.2024 11:36:11
+ * created: 02.03.2024 16:44:59
  **/
 
 #include <bits/stdc++.h>
@@ -45,18 +45,19 @@ template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; }
 
 int main()
 {
-    int N, K;
-    cin >> N >> K;
+    int N;
+    cin >> N;
+    vs S(N);
+    rep(i, N) cin >> S[i];
 
-    vi A(N);
-    rep(i, N) cin >> A[i];
-    vi B(N);
-    rep(i, N) cin >> B[i];
-    
-    ll sum = 0;
-    rep(i, N) sum += abs(A[i] - B[i]);
+    set<string> db;
 
-    YesNo(sum <= K && (K - sum) % 2 == 0);
+    rep(i, N){
+        if (db.find(S[i]) == db.end()){ //S[i]がdbにない場合
+            print(i+1);
+            db.insert(S[i]);
+        }
+    }
 
     return 0;
 }
