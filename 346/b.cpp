@@ -43,33 +43,65 @@ template <typename T, typename S> inline void print(const vector<pair<T, S>>& v)
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-int main()
-{
-    int w;
-    int b;
-    cin >> w >> b;
-    string S = "wbwbwwbwbwbw";
+// int main()
+// {
+//     int w;
+//     int b;
+//     cin >> w >> b;
+//     string S = "wbwbwwbwbwbw";
 
-    int ans_w = w /7;
-    int ans_b = b /5;
-    int w_count2  = w%7;
-    int b_count2 =  b%5;
-    rep(i,12){
-        int w_count = 0;
-        int b_count = 0;
-    for(int j=i; j<i+w_count2 + b_count2; j++){
-        if(S[j] == 'w'){
-            w_count++;
-        }
-        else{
-            b_count++;
-        }
+//     int ans_w = w /7;
+//     int ans_b = b /5;
+//     int w_count2  = w%7;
+//     int b_count2 =  b%5;
+//     rep(i,12){
+//         int w_count = 0;
+//         int b_count = 0;
+//     for(int j=i; j<i+w_count2 + b_count2; j++){
+//         if(S[j] == 'w'){
+//             w_count++;
+//         }
+//         else{
+//             b_count++;
+//         }
+//     }
+//         if(w_count == w_count2 && b_count == b_count2){
+//             print("Yes");
+//             return 0;
+//         }
+//     }
+//     print("No");
+//     return 0;
+// }
+int main(){
+    string s = "wbwbwwbwbwbw";
+  ll W, B;
+  cin >> W >> B;
+  string S;
+  rep(i, 20) { S += s; }
+
+  ll siz = S.size();
+
+  vll cum_W(siz + 1), cum_B(siz + 1);
+  rep(i, siz) {
+    if (S[i] == 'w') {
+      cum_W[i + 1] = cum_W[i] + 1;
+      cum_B[i + 1] = cum_B[i];
+    } else {
+      cum_W[i + 1] = cum_W[i];
+      cum_B[i + 1] = cum_B[i] + 1;
     }
-        if(w_count == w_count2 && b_count == b_count2){
-            print("Yes");
-            return 0;
-        }
+  }
+
+  ll ok = 0;
+  rep(i, siz) {
+    rep(j, i, siz) {
+      if (cum_W[j] - cum_W[i] == W and cum_B[j] - cum_B[i] == B) {
+        ok = 1;
+      }
     }
-    print("No");
-    return 0;
+  }
+
+  YesNo(ok);
+  return 0;
 }
