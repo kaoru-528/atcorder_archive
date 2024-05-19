@@ -45,28 +45,29 @@ template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; }
 
 int main()
 {
+    ll mod = 100000000;
     ll N;
     cin >> N;
     vll A(N);
     rep(i, N) cin >> A[i];
     vll B(N);
-    rep(i, N) B[i] = A[i]%100000000;
+    rep(i, N) B[i] = A[i]%mod;
     sort(all(B));
     ll ans = 0;
     ll sum = 0;
     for(ll i = 0; i < N; i++){
-        if(B[i] < (100000000/2)){
-            auto it = lower_bound(all(B), (100000000-B[i]));
+        if(B[i] < (mod/2)){
+            auto it = lower_bound(all(B), (mod-B[i]));
             if(B.end() - it != 0) sum += B.end() - it;
         }
         else{
             auto it = lower_bound(all(B),B[i]);
-            if(B.end() - it != 0) sum += B.end() - it - 1;
+            auto it2 = upper_bound(all(B), B[i]);
+            if(B.end() - it != 0) sum += B.end() - it - (it2 - it);
         }
         ans += B[i];
     }
-    
-    ans = ans*(N-1) - sum*100000000;
+    ans = ans*(N-1) - sum*mod;
     print(ans);
 
     return 0;

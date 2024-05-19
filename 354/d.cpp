@@ -1,6 +1,6 @@
 /**
  * author:  Kaoru
- * created: 27.04.2024 18:12:00
+ * created: 18.05.2024 22:29:50
  **/
 
 #include <bits/stdc++.h>
@@ -43,38 +43,10 @@ template <typename T, typename S> inline void print(const vector<pair<T, S>>& v)
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return 1; } return 0; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return 1; } return 0; }
 
-
 int main()
 {
-    int N, M;
-    cin >> N >> M;
-    vi A, B;
-    int N, M, A[100009], B[100009];
-    int dist[100009];
-    vi G[100009];
-    queue<int> Q;
-    for(int i = 1; i <= M; i++){
-        cin >> A[i] >> B[i];
-        G[A[i]].pb(B[i]);
-        G[B[i]].pb(A[i]);
-    }
-    for(int i = 1; i <= N; i++) dist[i] = -1;
-    Q.push(1);
-    dist[1] = 0;
-    while(!Q.empty()){
-        int pos = Q.front();
-        Q.pop();
-        rep(i, G[pos].size()){
-            int to = G[pos][i];
-            if(dist[to] == -1){
-                dist[to] = dist[pos] + 1;
-                Q.push(to);
-            }
-        }
-    }
-    for(int i = 1; i <= N; i++){
-        cout << dist[i] << endl;
-    }
+    int N;
+    cin >> N;
 
     return 0;
 }
