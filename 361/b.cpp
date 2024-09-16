@@ -57,8 +57,7 @@ int main()
     if(x && y && z){
         print("Yes");
     }
-    else
-    {
+    else{
         print("No");
     }
     return 0;
