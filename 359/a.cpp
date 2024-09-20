@@ -60,7 +60,20 @@ int main()
     cin >> S;
     ll ans = 0;
 
-
+    int min = N;
+    rep(mask, 1 << N) {
+        set<int> tmp;
+        int count = 0;
+        rep(i, N) {
+            if (mask & (1 << i)) {
+                tmp.insert(all(rows[i]));
+                count++;
+            }
+        }
+        if (tmp.size() == M) {
+            chmin(min, count);
+        }
+    }
 
     print(ans % mod);
     return 0;
